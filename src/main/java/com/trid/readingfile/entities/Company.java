@@ -4,11 +4,11 @@ public class Company {
     private int id;
     private String name;
     private String foundation;
-    private String capital;
+    private int capital;
     private String country;
     private boolean isHeaderQuarter;
 
-    public Company(int id, String name,String foundation, String capital, String country,boolean isHeaderQuarter){
+    public Company(int id, String name,String foundation, int capital, String country,boolean isHeaderQuarter){
         this.id = id;
         this.foundation = foundation;
         this.name = name;
@@ -20,7 +20,7 @@ public class Company {
         return id;
     }
 
-    public String getCapital() {
+    public int getCapital() {
         return capital;
     }
 
@@ -36,7 +36,7 @@ public class Company {
         return name;
     }
 
-    public void setCapital(String capital) {
+    public void setCapital(int capital) {
         this.capital = capital;
     }
 

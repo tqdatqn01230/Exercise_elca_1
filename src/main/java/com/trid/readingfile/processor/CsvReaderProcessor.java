@@ -24,14 +24,16 @@ public class CsvReaderProcessor implements FileReaderProcessor<List<Company>> {
         try (CSVReader reader = new CSVReader(new FileReader(fileName))) {
             String values[];
             List<Company> companies = new ArrayList<>();
+            reader.readNext();
             while ((values = reader.readNext()) != null) {
                 int id = Integer.parseInt(values[0]);
+                int capital = Integer.parseInt(values[3]);
                 boolean isHeadQuarter = "1".equals(values[5]);
-                companies.add(new Company(id, values[1], values[2], values[3], values[4], isHeadQuarter));
+                companies.add(new Company(id, values[1], values[2], capital, values[4], isHeadQuarter));
             }
             return companies;
         } catch (Exception exception) {
-
+            System.err.println(exception);
         }
         return null;
     }
