@@ -2,6 +2,8 @@ package com.trid.readingfile;
 
 import com.trid.readingfile.entities.Company;
 import com.trid.readingfile.processor.CsvReaderProcessor;
+import com.trid.readingfile.processor.FileExtension;
+import com.trid.readingfile.processor.FileFactoryProcessor;
 import com.trid.readingfile.processor.FileReaderProcessor;
 
 import java.util.ArrayList;
@@ -13,13 +15,11 @@ public class Main {
     private static final String fileName = "./src/main/resources/companies.csv";
 
     public static void main(String[] args) {
-//        List companies = readFile(new CsvReaderProcessor(fileName));
-//        processFileV1(companies);
-//        processFileV2(companies);
-        Integer a = 900, b =900;
-
-
-        if (a == b) System.err.println("OK");
+        FileFactoryProcessor factoryProcessor = new FileFactoryProcessor();
+        FileReaderProcessor fileReaderProcessor = factoryProcessor.createReaderProcessor(fileName, FileExtension.CSV);
+        List companies = readFile(fileReaderProcessor);
+        processFileV1(companies);
+        processFileV2(companies);
     }
 
     public static List<Company> readFile(FileReaderProcessor<List<Company>> reader) {
@@ -33,10 +33,6 @@ public class Main {
                 .map(company -> company.getCapital())
                 .reduce(0, Integer::sum);
         System.out.println("Total: " + total);
-        String a = "abc";
-        StringBuilder s = new StringBuilder();
-        s.append("a");
-
     }
 
     public static void processFileV2(List<Company> companies) {

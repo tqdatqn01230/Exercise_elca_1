@@ -3,17 +3,12 @@ package com.trid.readingfile.processor;
 import com.opencsv.CSVReader;
 import com.trid.readingfile.entities.Company;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CsvReaderProcessor implements FileReaderProcessor<List<Company>> {
     private String fileName;
-
-    public String getFileName() {
-        return fileName;
-    }
 
     public CsvReaderProcessor(String fileName) {
         this.fileName = fileName;
