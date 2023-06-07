@@ -1,8 +1,11 @@
 package com.trid.readingfile;
 
 import com.trid.readingfile.entities.Company;
+import com.trid.readingfile.exception.NotSupportedEntityException;
+import com.trid.readingfile.exception.NotSupportedFileExtensionException;
 import com.trid.readingfile.processor.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,8 +43,10 @@ public class Main {
 
         } catch (IOException e) {
             System.err.println(e.getMessage());
-        } catch (Exception e) {
-            System.err.println("Not found any file with defined extensions");
+        } catch (NotSupportedEntityException e) {
+            System.err.println(e.getMessage());
+        } catch (NotSupportedFileExtensionException e) {
+            System.err.println(e.getMessage());
         }
     }
 
@@ -60,11 +65,11 @@ public class Main {
         }
     }
 
-    public static String getFileName() throws Exception {
+    public static String getFileName() throws IOException {
         Set<String> files = listFilesUsingFilesList(folderPath);
         return files.stream()
-                .filter(x -> x.endsWith(".csv"))
-                .findFirst().orElseThrow(Exception::new);
+                .findFirst()
+                .orElseThrow(FileNotFoundException::new);
     }
 
 }
