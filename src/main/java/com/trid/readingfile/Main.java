@@ -5,6 +5,7 @@ import com.trid.readingfile.exception.NotSupportedEntityException;
 import com.trid.readingfile.exception.NotSupportedFileExtensionException;
 import com.trid.readingfile.processor.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -38,9 +39,12 @@ public class Main {
             System.out.println("Run time reading file:" + (System.nanoTime() - startTime));
 
             ProcessFile processFile = new ProcessFile();
+
             processFile.processFileV1(companies);
             processFile.processFileV2(companies);
-
+            File file = new File(folderPath);
+            WatchFolder watchFolder = new WatchFolder();
+            watchFolder.watchingForChange(file.toPath());
         } catch (IOException e) {
             System.err.println(e.getMessage());
         } catch (NotSupportedEntityException e) {
