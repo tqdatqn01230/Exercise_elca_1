@@ -5,7 +5,7 @@ import com.trid.readingfile.entities.Company;
 import java.util.List;
 
 public class ProcessFile {
-    public  void processFileV1(List<Company> companies) {
+    public void processFileV1(List<Company> companies) {
         int total = companies.stream()
                 .filter(company -> "CH".equals(company.getCountry().toUpperCase()))
                 .map(company -> company.getCapital())
@@ -13,7 +13,7 @@ public class ProcessFile {
         System.out.println("Total: " + total);
     }
 
-    public  void processFileV2(List<Company> companies) {
+    public void processFileV2(List<Company> companies) {
         System.out.println("Company Name: ");
         companies.stream()
                 .filter(company -> "CH".equals(company.getCountry().toUpperCase()))
